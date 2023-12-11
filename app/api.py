@@ -13,7 +13,8 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+
+    return {"service": "/rss/{parameter}", "parameter": ["python", "datascraping", "airflow", "spark", "kafka", "machinelearning"]}
 
 
 @app.get("/rss/{skill}")
