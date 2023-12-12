@@ -35,16 +35,23 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
 
     feed = feedparser.parse(url)
 
+    counter = 0
     for entry in feed.entries:
+        logo = ""
+        if counter % 2 == 0:
+            logo = "https://cdn2.iconfinder.com/data/icons/picons-social/57/79-upwork-2-512.png"
+        else:
+            logo = ""
         dict_feed = {
             "job_id": datetime.datetime.now(),
-            "logo": "https://cdn2.iconfinder.com/data/icons/picons-social/57/79-upwork-2-512.png",
+            "logo": logo,
             "title": entry.title,
             "link": entry.link,
             "summary": entry.summary,
             "published": entry.published,
         }
         data.append(dict_feed)
+        counter = counter + 1
 
     return {"data": data}
 
@@ -77,6 +84,7 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
         else:
             logo = ""
         dict_feed = {
+            "modulo": counter % 2,
             "job_id": datetime.datetime.now(),
             "logo": logo,
             "title": entry.title,
