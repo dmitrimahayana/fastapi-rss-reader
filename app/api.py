@@ -1,6 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
+import datetime
 import feedparser
 
 app = FastAPI()
@@ -22,6 +23,7 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
     url = ""
     data = []
     dict_feed = {
+        "job_id": str,
         "title": str,
         "link": str,
         "summary": str,
@@ -43,6 +45,7 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
+        dict_feed["job_id"] = datetime.datetime.now()
         dict_feed["title"] = entry.title
         dict_feed["link"] = entry.link
         dict_feed["summary"]= entry.summary
