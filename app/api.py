@@ -83,5 +83,6 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
             "published": entry.published,
         }
         data.append(dict_feed)
+        counter = counter + 1
 
     return {"data": feed}
