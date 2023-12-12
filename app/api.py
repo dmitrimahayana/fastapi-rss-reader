@@ -38,6 +38,7 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
     for entry in feed.entries:
         dict_feed = {
             "job_id": datetime.datetime.now(),
+            "logo": "https://cdn2.iconfinder.com/data/icons/picons-social/57/79-upwork-2-512.png",
             "title": entry.title,
             "link": entry.link,
             "summary": entry.summary,
