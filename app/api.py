@@ -20,11 +20,12 @@ def read_root():
 @app.get("/rss/upworks-jobs/{skill}")
 def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
     url = ""
+    data = []
     dict_feed = {
-        "title": [],
-        "link": [],
-        "summary": [],
-        "published": [],
+        "title": str,
+        "link": str,
+        "summary": str,
+        "published": str,
     }
     if skill == "python":
         url = f"https://www.upwork.com/ab/feed/jobs/rss?location=Americas%2CEurope%2COceania&verified_payment_only=1&q=python&sort=recency&paging=0%3B{page}&api_params=1&securityToken=d76b00a86ffa60baeb01da154db76acbc3e3fb340eb668f28c222bb46639c8703ab081313822496c9034327bdea763a7d925b795c8689537c032172bc7d66703&userUid=1183197118515154944&orgUid=1183197118523543553"
@@ -42,13 +43,13 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
     feed = feedparser.parse(url)
 
     for entry in feed.entries:
-        dict_feed["title"].append(entry.title)
-        dict_feed["link"].append(entry.link)
-        dict_feed["summary"].append(entry.summary)
-        dict_feed["published"].append(entry.published)
+        dict_feed["title"] = entry.title
+        dict_feed["link"] = entry.link
+        dict_feed["summary"]= entry.summary
+        dict_feed["published"] = entry.published
+        data.append(dict_feed)
 
-    return {"title": dict_feed["title"], "link": dict_feed["link"], "summary": dict_feed["summary"],
-            "published": dict_feed["published"]}
+    return {"data": data}
 
 # @app.get("/items/{item_id}")
 # def read_item(item_id: int, q: Union[str, None] = None):
