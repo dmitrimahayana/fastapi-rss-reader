@@ -74,6 +74,8 @@ def read_item(skill: str, q: Union[str, None] = None, page: int = 10):
         logo = ""
         if counter % 2 == 0:
             logo = "https://cdn2.iconfinder.com/data/icons/picons-social/57/79-upwork-2-512.png"
+        else:
+            logo = ""
         dict_feed = {
             "job_id": datetime.datetime.now(),
             "logo": logo,
